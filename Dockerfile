@@ -8,3 +8,7 @@ ADD ./google-chrome /
 RUN chmod +x /google-chrome
 RUN /ci_prepare_container.sh
 
+RUN service mysql start
+RUN echo "CREATE DATABASE drupal; CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'localhost';" | mysql
+
+RUN service apache2 start
